@@ -8,6 +8,7 @@
 * Játék osztály
 * Játéktér osztály
 * Tárgy osztály
+* Ajtó osztály
 * index.js
 * Karakter kinézet
 * Játék kinézet
@@ -16,7 +17,6 @@
 * Játék osztály
 * Karakter osztály
 * Kulcs osztály
-* Ajtó osztály
 * index.html
 * Karakter kinézet
 * Játék kinézet
