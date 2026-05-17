@@ -1,6 +1,6 @@
 export default class Kulcs{
     constructor(x, y, kep = ""){
-        this.helyzet = {
+        this.pozicio = {
             x: x,
             y: y
         }

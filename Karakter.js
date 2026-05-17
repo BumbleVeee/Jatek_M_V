@@ -9,6 +9,14 @@ export default class Karakter {
         this.kep = kep;
     }
 
+    getPozicio() {
+        return this.#pozicio;
+    }
+
+    getHatizsak() {
+        return this.#hatizsak;
+    }
+
     mozog(dx, dy) {
         this.#pozicio.x += dx;
         this.#pozicio.y += dy;
