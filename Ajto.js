@@ -2,9 +2,10 @@ export default class Ajto {
     #nyitva;
     #pozicio;
     
-    constructor(x, y) {
+    constructor(x, y, kep = "") {
         this.#nyitva = false;
         this.#pozicio = {x: x, y : y};
+        this.kep = kep;
     }
 
     getPozicio() {
@@ -15,12 +16,8 @@ export default class Ajto {
         return this.#nyitva;
     }
 
-    interakcio() {
-        
-    }
-
-    megjelenit() {
-        
+    kinyit() {
+        this.#nyitva = true;
     }
 
 }

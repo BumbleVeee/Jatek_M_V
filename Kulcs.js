@@ -16,5 +16,14 @@ export default class Kulcs {
         this.kep = kep;
 
         this.felveheto = true;
+        this.felhasznalt = false;
+    }
+
+    felvesz() {
+        this.felveheto = false;
+    }
+
+    felhasznal() {
+        this.felhasznalt = true;
     }
 }
