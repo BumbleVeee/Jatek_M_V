@@ -23,7 +23,7 @@ export default class Kulcs {
 
     megjelenit(szulo){
         this.elem.innerHTML = `<img src="${this.kep}">`;
-        this.elem.frissit();
+        this.frissit();
         szulo.appendChild(this.elem);
     }
 

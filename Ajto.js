@@ -11,6 +11,10 @@ export default class Ajto {
         this.elem.classList.add("ajto");
     }
 
+    get pozicio() {
+        return this.#pozicio;
+    }
+
     megjelenit(szulo) {
 
         this.elem.innerHTML = `<img src="${this.kep}">`;

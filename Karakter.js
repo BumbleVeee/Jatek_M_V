@@ -12,6 +12,14 @@ export default class Karakter {
         this.elem.classList.add("karakter");
     }
 
+    get pozicio() {
+        return this.#pozicio;
+    }
+
+    get hatizsak() {
+        return this.#hatizsak;
+    }
+
     megjelenit(szulo) {
 
         this.elem.innerHTML = `<img src="${this.kep}">`;
@@ -33,10 +41,10 @@ export default class Karakter {
 
     
     lerak(targy) {
-        const i = this.inventory.indexOf(targy);
+        const i = this.#hatizsak.indexOf(targy);
 
         if (i !== -1) {
-            this.inventory.splice(i, 1);
+            this.#hatizsak.splice(i, 1);
         }
     }
 }

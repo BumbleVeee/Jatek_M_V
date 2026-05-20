@@ -1,0 +1,28 @@
+#jatekter {
+
+    position: relative;
+
+    width: 800px;
+    height: 600px;
+
+    border: 3px solid black;
+
+    overflow: hidden;
+
+    background-color: lightgray;
+}
+
+.karakter,
+.kulcs,
+.ajto {
+
+    position: absolute;
+}
+
+.karakter img,
+.kulcs img,
+.ajto img {
+
+    width: 50px;
+    height: 50px;
+}
