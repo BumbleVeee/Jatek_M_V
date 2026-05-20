@@ -16,14 +16,26 @@ export default class Kulcs {
         this.kep = kep;
 
         this.felveheto = true;
-        this.felhasznalt = false;
+
+        this.elem = document.createElement("div");
+        this.elem.classList.add("kulcs");
+    }
+
+    megjelenit(szulo){
+        this.elem.innerHTML = `<img src="${this.kep}">`;
+        this.elem.frissit();
+        szulo.appendChild(this.elem);
+    }
+
+    frissit() {
+
+        this.elem.style.left = `${this.pozicio.x}px`;
+        this.elem.style.top = `${this.pozicio.y}px`;
     }
 
     felvesz() {
         this.felveheto = false;
+        this.elem.remove();
     }
 
-    felhasznal() {
-        this.felhasznalt = true;
-    }
 }

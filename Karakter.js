@@ -7,19 +7,24 @@ export default class Karakter {
         this.#pozicio = {x: x, y : y};
         this.#hatizsak = [];
         this.kep = kep;
+
+        this.elem = document.createElement("div");
+        this.elem.classList.add("karakter");
     }
 
-    getPozicio() {
-        return this.#pozicio;
+    megjelenit(szulo) {
+
+        this.elem.innerHTML = `<img src="${this.kep}">`;
+
+        this.frissit();
+
+        szulo.appendChild(this.elem);
     }
 
-    getHatizsak() {
-        return this.#hatizsak;
-    }
+    frissit() {
 
-    mozog(dx, dy) {
-        this.#pozicio.x += dx;
-        this.#pozicio.y += dy;
+        this.elem.style.left = `${this.#pozicio.x}px`;
+        this.elem.style.top = `${this.#pozicio.y}px`;
     }
 
     felvesz(targy) {
@@ -28,11 +33,10 @@ export default class Karakter {
 
     
     lerak(targy) {
-        if (!this.#hatizsak.includes(targy)) {
-            return null;
-        }
+        const i = this.inventory.indexOf(targy);
 
-        this.#hatizsak = this.#hatizsak.filter(i => i !== targy);
-        return targy;
+        if (i !== -1) {
+            this.inventory.splice(i, 1);
+        }
     }
 }
