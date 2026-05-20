@@ -83,20 +83,44 @@ export default class Jatekter {
   }
 
   mozgas() {
-    if (this.input.left) {
-      this.#karakter.pozicio.x -= 2;
+
+    const sebesseg = 2;
+
+    const palyaSzelesseg = 800;
+    const palyaMagassag = 600;
+
+    const karakterMeret = 50;
+
+    // BAL
+    if (
+        this.input.left &&
+        this.#karakter.pozicio.x > 0
+    ) {
+        this.#karakter.pozicio.x -= sebesseg;
     }
 
-    if (this.input.right) {
-      this.#karakter.pozicio.x += 2;
+    // JOBB
+    if (
+        this.input.right &&
+        this.#karakter.pozicio.x < palyaSzelesseg - karakterMeret
+    ) {
+        this.#karakter.pozicio.x += sebesseg;
     }
 
-    if (this.input.up) {
-      this.#karakter.pozicio.y -= 2;
+    // FEL
+    if (
+        this.input.up &&
+        this.#karakter.pozicio.y > 0
+    ) {
+        this.#karakter.pozicio.y -= sebesseg;
     }
 
-    if (this.input.down) {
-      this.#karakter.pozicio.y += 2;
+    // LE
+    if (
+        this.input.down &&
+        this.#karakter.pozicio.y < palyaMagassag - karakterMeret
+    ) {
+        this.#karakter.pozicio.y += sebesseg;
     }
   }
 
