@@ -20,7 +20,8 @@ export default class JatekTer {
       down: false,
     };
 
-    this.esemenyek();
+    //this.esemenyek();
+    //this.mozgas();
 
     this.megjelenit();
   }
