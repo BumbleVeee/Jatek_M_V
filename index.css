@@ -23,7 +23,7 @@ body{
     overflow: hidden;
 
     /*background-color: lightgray;*/
-    background-image: url("/Jatek_M_V/kepek/jatekter.avif");
+    background-image: url("./kepek/jatekter.avif");
 }
 
 .karakter,
@@ -33,43 +33,34 @@ body{
     position: absolute;
 }
 
-.mozog_jobb {
-    animation: jobbra 0.25s infinite alternate;
+.kulcs {
+    z-index: 1;
 }
 
-.mozog_bal {
-    animation: balra 0.25s infinite alternate;
+.ajto {
+    z-index: 1;
 }
 
-@keyframes jobbra {
+.karakter {
+    z-index: 10;
+}
+
+.karakter.mozog {
+    animation: seta 0.25s infinite alternate;
+}
+
+@keyframes seta {
 
     from {
         transform:
-            scaleX(-1)
             translateY(0px)
             rotate(6deg);
     }
 
     to {
         transform:
-            scaleX(-1)
-            translateY(-4px)
-            rotate(-2deg);
-    }
-}
-
-@keyframes balra {
-
-    from {
-        transform:
-            translateY(0px)
+            translateY(-6px)
             rotate(-6deg);
-    }
-
-    to {
-        transform:
-            translateY(-4px)
-            rotate(2deg);
     }
 }
 
