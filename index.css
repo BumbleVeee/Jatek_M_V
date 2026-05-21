@@ -22,7 +22,8 @@ body{
 
     overflow: hidden;
 
-    background-color: lightgray;
+    /*background-color: lightgray;*/
+    background-image: url("/Jatek_M_V/kepek/jatekter.avif");
 }
 
 .karakter,
