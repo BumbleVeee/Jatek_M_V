@@ -28,23 +28,22 @@ export default class Jatekter {
 
   esemenyek() {
     window.addEventListener("keydown", (e) => {
-      
-      if (e.key === "ArrowLeft") {
+      if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
         this.input.left = true;
         this.karakterElem.classList.add("mozog_bal");
       }
 
-      if (e.key === "ArrowRight") {
+      if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") {
         this.input.right = true;
         this.karakterElem.classList.add("mozog_jobb");
       }
 
-      if (e.key === "ArrowUp") {
+      if (e.key === "ArrowUp" || e.key === "w" || e.key === "W") {
         this.input.up = true;
         this.karakterElem.classList.add("mozog_vertikalis");
       }
 
-      if (e.key === "ArrowDown") {
+      if (e.key === "ArrowDown" || e.key === "s" || e.key === "S") {
         this.input.down = true;
         this.karakterElem.classList.add("mozog_vertikalis");
       }
@@ -52,22 +51,22 @@ export default class Jatekter {
 
     window.addEventListener("keyup", (e) => {
       
-      if (e.key === "ArrowLeft") {
+      if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
         this.input.left = false;
         this.karakterElem.classList.remove("mozog_bal");
       }
 
-      if (e.key === "ArrowRight") {
+      if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") {
         this.input.right = false;
         this.karakterElem.classList.remove("mozog_jobb");
       }
 
-      if (e.key === "ArrowUp") {
+      if (e.key === "ArrowUp" || e.key === "w" || e.key === "W") {
         this.input.up = false;
         this.karakterElem.classList.remove("mozog_vertikalis");
       }
 
-      if (e.key === "ArrowDown") {
+      if (e.key === "ArrowDown" || e.key === "s" || e.key === "S") {
         this.input.down = false;
         this.karakterElem.classList.remove("mozog_vertikalis");
       }
