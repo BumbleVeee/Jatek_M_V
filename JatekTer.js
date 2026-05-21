@@ -22,42 +22,54 @@ export default class Jatekter {
 
     this.esemenyek();
     this.megjelenit();
+    
+    this.karakterElem = document.querySelector(".karakter");
   }
 
   esemenyek() {
     window.addEventListener("keydown", (e) => {
+      
       if (e.key === "ArrowLeft") {
         this.input.left = true;
+        this.karakterElem.classList.add("mozog_bal");
       }
 
       if (e.key === "ArrowRight") {
         this.input.right = true;
+        this.karakterElem.classList.add("mozog_jobb");
       }
 
       if (e.key === "ArrowUp") {
         this.input.up = true;
+        this.karakterElem.classList.add("mozog_vertikalis");
       }
 
       if (e.key === "ArrowDown") {
         this.input.down = true;
+        this.karakterElem.classList.add("mozog_vertikalis");
       }
     });
 
     window.addEventListener("keyup", (e) => {
+      
       if (e.key === "ArrowLeft") {
         this.input.left = false;
+        this.karakterElem.classList.remove("mozog_bal");
       }
 
       if (e.key === "ArrowRight") {
         this.input.right = false;
+        this.karakterElem.classList.remove("mozog_jobb");
       }
 
       if (e.key === "ArrowUp") {
         this.input.up = false;
+        this.karakterElem.classList.remove("mozog_vertikalis");
       }
 
       if (e.key === "ArrowDown") {
         this.input.down = false;
+        this.karakterElem.classList.remove("mozog_vertikalis");
       }
     });
   }

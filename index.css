@@ -33,6 +33,46 @@ body{
     position: absolute;
 }
 
+.mozog_jobb {
+    animation: jobbra 0.25s infinite alternate;
+}
+
+.mozog_bal {
+    animation: balra 0.25s infinite alternate;
+}
+
+@keyframes jobbra {
+
+    from {
+        transform:
+            scaleX(-1)
+            translateY(0px)
+            rotate(6deg);
+    }
+
+    to {
+        transform:
+            scaleX(-1)
+            translateY(-4px)
+            rotate(-2deg);
+    }
+}
+
+@keyframes balra {
+
+    from {
+        transform:
+            translateY(0px)
+            rotate(-6deg);
+    }
+
+    to {
+        transform:
+            translateY(-4px)
+            rotate(2deg);
+    }
+}
+
 .karakter img,
 .kulcs img,
 .ajto img {
