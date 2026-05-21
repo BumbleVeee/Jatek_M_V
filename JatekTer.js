@@ -26,37 +26,38 @@ export default class Jatekter {
 
   esemenyek() {
     window.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") {
+      if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
         this.input.left = true;
       }
 
-      if (e.key === "ArrowRight") {
+      if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") {
         this.input.right = true;
       }
 
-      if (e.key === "ArrowUp") {
+      if (e.key === "ArrowUp" || e.key === "w" || e.key === "W") {
         this.input.up = true;
       }
 
-      if (e.key === "ArrowDown") {
+      if (e.key === "ArrowDown" || e.key === "s" || e.key === "S") {
         this.input.down = true;
       }
     });
 
     window.addEventListener("keyup", (e) => {
-      if (e.key === "ArrowLeft") {
+      
+      if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
         this.input.left = false;
       }
 
-      if (e.key === "ArrowRight") {
+      if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") {
         this.input.right = false;
       }
 
-      if (e.key === "ArrowUp") {
+      if (e.key === "ArrowUp" || e.key === "w" || e.key === "W") {
         this.input.up = false;
       }
 
-      if (e.key === "ArrowDown") {
+      if (e.key === "ArrowDown" || e.key === "s" || e.key === "S") {
         this.input.down = false;
       }
     });
