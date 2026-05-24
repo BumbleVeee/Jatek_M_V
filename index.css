@@ -14,16 +14,20 @@ body{
 #jatekter {
     position: relative;
 
-    width: 800px;
-    height: 600px;
+    width: 801px;
+    height: 601px;
 
-    border: 3px solid black;
+    /*border: 3px solid black;*/
     border-radius: 15px;
 
     overflow: hidden;
 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     /*background-color: lightgray;*/
-    background-image: url("kepek/jatekter.avif");
+    background-image: url("kepek/jatekter.png");
 }
 
 .karakter,
@@ -64,10 +68,17 @@ body{
     }
 }
 
-.karakter img,
-.kulcs img,
-.ajto img {
+.kulcs img{
+    width: 35px;
+    height: 35px;
+}
 
-    width: 50px;
-    height: 50px;
+.ajto img{
+    width: 100px;
+    height: 100px;
+}
+
+.karakter img{
+    width: 70px;
+    height: 100px;
 }

@@ -9,9 +9,9 @@ export default class Jatekter {
   #kulcs;
   constructor() {
     this.szuloElem = document.querySelector("#jatekter");
-    this.#karakter = new Karakter("placeholder", 50, 50, KEPLISTA[0].kep);
-    this.#kulcs = new Kulcs(300, 200, KEPLISTA[1].kep);
-    this.#ajto = new Ajto(600, 150, KEPLISTA[2].kep);
+    this.#karakter = new Karakter("placeholder", 100, 150, KEPLISTA[0].kep);
+    this.#kulcs = new Kulcs(650, 450, KEPLISTA[1].kep);
+    this.#ajto = new Ajto(350, 25, KEPLISTA[2].kep);
 
     this.input = {
       left: false,
@@ -22,14 +22,14 @@ export default class Jatekter {
 
     this.esemenyek();
     this.megjelenit();
-    
+
     this.karakterElem = document.querySelector(".karakter");
   }
 
   esemenyek() {
     window.addEventListener("keydown", (e) => {
       this.karakterElem.classList.add("mozog");
-      
+
       if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
         this.input.left = true;
       }
@@ -89,51 +89,47 @@ export default class Jatekter {
   }
 
   mozgas() {
-
     const sebesseg = 2;
 
     const palyaSzelesseg = 800;
     const palyaMagassag = 600;
 
-    const karakterMeret = 50;
+    const karakterMeret = 70;
 
     // BAL
-    if (
-        this.input.left &&
-        this.#karakter.pozicio.x > 0
-    ) {
-        this.#karakter.pozicio.x -= sebesseg;
+    if (this.input.left && this.#karakter.pozicio.x > 0) {
+      this.#karakter.pozicio.x -= sebesseg;
     }
 
     // JOBB
     if (
-        this.input.right &&
-        this.#karakter.pozicio.x < palyaSzelesseg - karakterMeret
+      this.input.right &&
+      this.#karakter.pozicio.x < palyaSzelesseg - karakterMeret
     ) {
-        this.#karakter.pozicio.x += sebesseg;
+      this.#karakter.pozicio.x += sebesseg;
     }
 
     // FEL
     if (
-        this.input.up &&
-        this.#karakter.pozicio.y > 0
+      this.input.up &&
+      this.#karakter.pozicio.y > 40
     ) {
-        this.#karakter.pozicio.y -= sebesseg;
+      this.#karakter.pozicio.y -= sebesseg;
     }
 
     // LE
     if (
-        this.input.down &&
-        this.#karakter.pozicio.y < palyaMagassag - karakterMeret
+      this.input.down &&
+      this.#karakter.pozicio.y < palyaMagassag - karakterMeret
     ) {
-        this.#karakter.pozicio.y += sebesseg;
+      this.#karakter.pozicio.y += sebesseg;
     }
   }
 
   kulcsFelvetel() {
     const kozelVan =
-      Math.abs(this.#karakter.pozicio.x - this.#kulcs.pozicio.x) < 20 &&
-      Math.abs(this.#karakter.pozicio.y - this.#kulcs.pozicio.y) < 20;
+      Math.abs(this.#karakter.pozicio.x - this.#kulcs.pozicio.x) < 75 &&
+      Math.abs(this.#karakter.pozicio.y - this.#kulcs.pozicio.y) < 75;
 
     if (this.#kulcs.felveheto && kozelVan) {
       this.#karakter.felvesz(this.#kulcs);
@@ -146,8 +142,8 @@ export default class Jatekter {
 
   ajtoNyitas() {
     const kozelVan =
-      Math.abs(this.#karakter.pozicio.x - this.#ajto.pozicio.x) < 20 &&
-      Math.abs(this.#karakter.pozicio.y - this.#ajto.pozicio.y) < 20;
+      Math.abs(this.#karakter.pozicio.x - this.#ajto.pozicio.x) < 60 &&
+      Math.abs(this.#karakter.pozicio.y - this.#ajto.pozicio.y) < 40;
 
     const vanKulcs = this.#karakter.hatizsak.includes(this.#kulcs);
 
