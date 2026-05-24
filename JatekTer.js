@@ -94,7 +94,8 @@ export default class Jatekter {
     const palyaSzelesseg = 800;
     const palyaMagassag = 600;
 
-    const karakterMeret = 70;
+    const karakterSzelesseg = 70;
+    const karakterMagassag = 100;
 
     // BAL
     if (this.input.left && this.#karakter.pozicio.x > 0) {
@@ -104,23 +105,20 @@ export default class Jatekter {
     // JOBB
     if (
       this.input.right &&
-      this.#karakter.pozicio.x < palyaSzelesseg - karakterMeret
+      this.#karakter.pozicio.x < palyaSzelesseg - karakterSzelesseg
     ) {
       this.#karakter.pozicio.x += sebesseg;
     }
 
     // FEL
-    if (
-      this.input.up &&
-      this.#karakter.pozicio.y > 40
-    ) {
+    if (this.input.up && this.#karakter.pozicio.y > 80) {
       this.#karakter.pozicio.y -= sebesseg;
     }
 
     // LE
     if (
       this.input.down &&
-      this.#karakter.pozicio.y < palyaMagassag - karakterMeret
+      this.#karakter.pozicio.y < palyaMagassag - karakterMagassag
     ) {
       this.#karakter.pozicio.y += sebesseg;
     }
