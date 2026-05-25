@@ -50,7 +50,8 @@ body{
 }
 
 .karakter.mozog {
-    animation: seta 0.25s infinite alternate;
+    animation: seta 0.20s infinite alternate;
+    transform-origin: 50% 100%;
 }
 
 @keyframes seta {
@@ -63,7 +64,7 @@ body{
 
     to {
         transform:
-            translateY(-6px)
+            translateY(0px)
             rotate(-6deg);
     }
 }

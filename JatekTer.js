@@ -28,45 +28,63 @@ export default class Jatekter {
 
   esemenyek() {
     window.addEventListener("keydown", (e) => {
-      this.karakterElem.classList.add("mozog");
-
+      
       if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
         this.input.left = true;
+        this.karakterElem.classList.add("mozog");
       }
 
       if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") {
         this.input.right = true;
+        this.karakterElem.classList.add("mozog");
       }
 
       if (e.key === "ArrowUp" || e.key === "w" || e.key === "W") {
         this.input.up = true;
+        this.karakterElem.classList.add("mozog");
       }
 
       if (e.key === "ArrowDown" || e.key === "s" || e.key === "S") {
         this.input.down = true;
+        this.karakterElem.classList.add("mozog");
       }
     });
 
     window.addEventListener("keyup", (e) => {
-      this.karakterElem.classList.remove("mozog");
-
+      
       if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
         this.input.left = false;
+        this.karakterElem.classList.remove("mozog");
       }
 
       if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") {
         this.input.right = false;
+        this.karakterElem.classList.remove("mozog");
       }
 
       if (e.key === "ArrowUp" || e.key === "w" || e.key === "W") {
         this.input.up = false;
+        this.karakterElem.classList.remove("mozog");
       }
 
       if (e.key === "ArrowDown" || e.key === "s" || e.key === "S") {
         this.input.down = false;
+        this.karakterElem.classList.remove("mozog");
       }
     });
+    
+    window.addEventListener("blur", () => {
+      this.inputReset();
+    });
   }
+
+  inputReset() {
+      this.input.left = false;
+      this.input.right = false;
+      this.input.up = false;
+      this.input.down = false;
+      this.karakterElem.classList.remove("mozog");
+    }
 
   megjelenit() {
     this.#karakter.megjelenit(this.szuloElem);
@@ -135,13 +153,14 @@ export default class Jatekter {
       this.#kulcs.felvesz();
 
       console.log("Kulcs felvéve!");
+      window.alert("Kulcs felvéve!");
     }
   }
 
   ajtoNyitas() {
     const kozelVan =
-      Math.abs(this.#karakter.pozicio.x - this.#ajto.pozicio.x) < 60 &&
-      Math.abs(this.#karakter.pozicio.y - this.#ajto.pozicio.y) < 40;
+      Math.abs(this.#karakter.pozicio.x - this.#ajto.pozicio.x) < 100 &&
+      Math.abs(this.#karakter.pozicio.y - this.#ajto.pozicio.y) < 80;
 
     const vanKulcs = this.#karakter.hatizsak.includes(this.#kulcs);
 
@@ -151,44 +170,7 @@ export default class Jatekter {
       this.#karakter.lerak(this.#kulcs);
 
       console.log("Ajtó kinyitva!");
+      window.alert("Ajtó kinyitva! Kijutottál a szobából!");
     }
   }
 }
-
-/*
-nem tudjuk hogy szükséges ezek közül valamelyik :(
-
-for (let y = 0; y < this.magassag; y++) {
-
-    for (let x = 0; x < this.szelesseg; x++) {
-
-        const mezo = document.createElement("div");
-
-        mezo.classList.add("mezo");
-
-        mezo.dataset.x = x;
-        mezo.dataset.y = y;
-
-        ter.appendChild(mezo);
-    }
-}
-
-vagy
-
-for (let y = 0; y < this.magassag; y++) {
-
-    this.mezok[y] = [];
-
-    for (let x = 0; x < this.szelesseg; x++) {
-
-        const mezo = document.createElement("div");
-
-        mezo.classList.add("mezo");
-
-        ter.appendChild(mezo);
-
-        // eltároljuk a DOM elemet
-        this.mezok[y][x] = mezo;
-    }
-}
-*/
