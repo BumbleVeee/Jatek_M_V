@@ -129,7 +129,7 @@ export default class Jatekter {
     }
 
     // FEL
-    if (this.input.up && this.#karakter.pozicio.y > 80) {
+    if (this.input.up && this.#karakter.pozicio.y > 50) {
       this.#karakter.pozicio.y -= sebesseg;
     }
 
@@ -143,11 +143,17 @@ export default class Jatekter {
   }
 
   kulcsFelvetel() {
-    const kozelVan =
-      Math.abs(this.#karakter.pozicio.x - this.#kulcs.pozicio.x) < 75 &&
-      Math.abs(this.#karakter.pozicio.y - this.#kulcs.pozicio.y) < 75;
+    const karKozepX = this.#karakter.pozicio.x + 35; // 70 fele
+    const karKozepY = this.#karakter.pozicio.y + 50; // 100 fele
 
-    if (this.#kulcs.felveheto && kozelVan) {
+    const kulcsKozepX = this.#kulcs.pozicio.x + 17.5; // 35 fele
+    const kulcsKozepY = this.#kulcs.pozicio.y + 17.5; // 35 fele
+
+    const kulcsKozVan =
+      Math.abs(karKozepX - kulcsKozepX) < 50 && // Megnövelt toleranciakeret
+      Math.abs(karKozepY - kulcsKozepY) < 60;
+
+    if (this.#kulcs.felveheto && kulcsKozVan) {
       this.#karakter.felvesz(this.#kulcs);
 
       this.#kulcs.felvesz();
@@ -158,13 +164,13 @@ export default class Jatekter {
   }
 
   ajtoNyitas() {
-    const kozelVan =
-      Math.abs(this.#karakter.pozicio.x - this.#ajto.pozicio.x) < 100 &&
-      Math.abs(this.#karakter.pozicio.y - this.#ajto.pozicio.y) < 80;
+    const ajtoKozVan =
+      Math.abs(this.#karakter.pozicio.x - this.#ajto.pozicio.x) < 70 &&
+      Math.abs(this.#karakter.pozicio.y - this.#ajto.pozicio.y) < 50;
 
     const vanKulcs = this.#karakter.hatizsak.includes(this.#kulcs);
 
-    if (kozelVan && vanKulcs) {
+    if (ajtoKozVan && vanKulcs) {
       this.#ajto.kinyit();
 
       this.#karakter.lerak(this.#kulcs);
