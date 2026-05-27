@@ -1,11 +1,11 @@
 export const KEPLISTA = [
     {
-        kep : "kepek/karakter.png" /* karakter képe */
+        kep : "src/kepek/karakter.png" /* karakter képe */
     },
     {
-        kep : "kepek/kulcs.png" /* kulcs képe */
+        kep : "src/kepek/kulcs.png" /* kulcs képe */
     },
     {
-        kep : "kepek/ajto.png" /* ajto képe */
+        kep : "src/kepek/ajto.png" /* ajto képe */
     }
 ]
