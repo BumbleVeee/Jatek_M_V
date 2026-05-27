@@ -1,7 +1,9 @@
+/* Globális beállítás: a padding és border beleszámít a teljes szélességbe/magasságba */
 *{
     box-sizing: border-box;
 }
 
+/* Az egész ablakot kitöltő, középre igazított flexbox konténer sötét háttérrel */
 body{
     background-color: rgb(19, 19, 19);
     display: flex;
@@ -11,6 +13,7 @@ body{
      min-height: 100vh;
 }
 
+/* A játéktér fix méretű doboza, relatív pozicionálással a belső elemek miatt */
 #jatekter {
     position: relative;
 
@@ -20,16 +23,16 @@ body{
     /*border: 3px solid black;*/
     border-radius: 15px;
 
-    overflow: hidden;
+    overflow: hidden; /* Ami kilóg a pályáról, az nem látszódhat */
 
+    /* Háttérkép méretezése és beállítása */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
-    /*background-color: lightgray;*/
     background-image: url("kepek/jatekter.png");
 }
 
+/* Minden játékelemet abszolút pozicionálunk a szülőhöz (#jatekter) képest */
 .karakter,
 .kulcs,
 .ajto {
@@ -37,6 +40,7 @@ body{
     position: absolute;
 }
 
+/* Rétegrendek (z-index) beállítása: a karakter mindig a kulcs és ajtó felett legyen */
 .kulcs {
     z-index: 1;
 }
@@ -49,11 +53,13 @@ body{
     z-index: 10;
 }
 
+/* Amikor a karakter mozog, elindítjuk rajta a 'seta' elnevezésű CSS animációt */
 .karakter.mozog {
-    animation: seta 0.20s infinite alternate;
-    transform-origin: 50% 100%;
+    animation: seta 0.20s infinite alternate; /* 0.2 másodpercenként vált oda-vissza */
+    transform-origin: 50% 100%; /* A forgatás tengelye a karakter "lábánál" van */
 }
 
+/* Séta animáció: enyhe dülöngélő hatás jobbra-balra forgatással */
 @keyframes seta {
 
     from {
@@ -69,6 +75,7 @@ body{
     }
 }
 
+/* Az egyes játékelemek belső képeinek fix méretezése */
 .kulcs img{
     width: 35px;
     height: 35px;
