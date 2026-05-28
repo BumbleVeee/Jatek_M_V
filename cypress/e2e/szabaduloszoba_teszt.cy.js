@@ -65,6 +65,36 @@ describe('Window alert tesztek - Bernáth Milán', () => {
       }
     })
   })
+
+  it('WASD mozgás teszt', () => {
+    cy.get('.karakter').trigger('keydown', { key: 's', force: true });
+    cy.get('.karakter').should(($div) => {
+      const jelenlegiY = parseInt($div.css('top'), 10);
+      expect(jelenlegiY).to.be.at.least(250);
+    });
+    cy.get('.karakter').trigger('keyup', { key: 's', force: true });
+    
+    cy.get('.karakter').trigger('keydown', { key: 'w', force: true });
+    cy.get('.karakter').should(($div) => {
+      const jelenlegiY = parseInt($div.css('top'), 10);
+      expect(jelenlegiY).to.be.at.most(150);
+    });
+    cy.get('.karakter').trigger('keyup', { key: 'w', force: true });
+
+    cy.get('.karakter').trigger('keydown', { key: 'd', force: true });
+    cy.get('.karakter').should(($div) => {
+      const jelenlegiX = parseInt($div.css('left'), 10);
+      expect(jelenlegiX).to.be.at.least(200);
+    });
+    cy.get('.karakter').trigger('keyup', { key: 'd', force: true });
+
+    cy.get('.karakter').trigger('keydown', { key: 'a', force: true });
+    cy.get('.karakter').should(($div) => {
+      const jelenlegiX = parseInt($div.css('left'), 10);
+      expect(jelenlegiX).to.be.at.most(100);
+    });
+    cy.get('.karakter').trigger('keyup', { key: 'a', force: true });
+  })
 })
 
 describe("Képek megjelenése teszt - Gubek Veronika", () => {
