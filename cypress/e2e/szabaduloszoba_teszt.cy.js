@@ -1,9 +1,11 @@
-describe('template spec', () => {
-  it('passes', () => {
+describe('Window alert tesztek - Bernáth Milán', () => {
+  beforeEach(() => {
     cy.visit('https://bumbleveee.github.io/Jatek_M_V/')
   })
-  it('kulcs alert', () => {
-    cy.visit('https://bumbleveee.github.io/Jatek_M_V/')
+  
+  it('passes', () => {})
+  it('Kulcs felvéve alert tesztelése', () => {
+
     cy.get('.karakter').trigger('keydown', { key: 'ArrowRight', force: true });
     cy.get('.karakter').should(($div) => {
       const jelenlegiX = parseInt($div.css('left'), 10); 
@@ -23,9 +25,7 @@ describe('template spec', () => {
     })
   })
 
-  it('ajtó alert', () => {
-    cy.visit('https://bumbleveee.github.io/Jatek_M_V/')
-    
+  it('Ajtó kinyitva alert tesztelése', () => {    
     cy.get('.karakter').trigger('keydown', { key: 'ArrowRight', force: true });
     cy.get('.karakter').should(($div) => {
       const jelenlegiX = parseInt($div.css('left'), 10); 
@@ -66,3 +66,28 @@ describe('template spec', () => {
     })
   })
 })
+
+describe("Képek megjelenése teszt - Gubek Veronika", () => {
+
+    beforeEach(() => {
+        cy.visit("https://bumbleveee.github.io/Jatek_M_V/");
+    });
+
+    it("Karakter kép megjelenik", () => {
+
+        cy.get(".karakter img")
+            .should("exist");
+    });
+
+    it("Kulcs kép megjelenik", () => {
+
+        cy.get(".kulcs img")
+            .should("exist");
+    });
+
+    it("Ajtó kép megjelenik", () => {
+
+        cy.get(".ajto img")
+            .should("exist");
+    });
+});
