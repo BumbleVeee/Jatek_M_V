@@ -1,4 +1,4 @@
-describe('Window alert tesztek - Bernáth Milán', () => {
+describe('Tesztek - Bernáth Milán', () => {
   beforeEach(() => {
     cy.visit('https://bumbleveee.github.io/Jatek_M_V/')
   })
