@@ -95,6 +95,18 @@ describe('Tesztek - Bernáth Milán', () => {
     });
     cy.get('.karakter').trigger('keyup', { key: 'a', force: true });
   })
+
+  it('A mozog class-t megkapja-e a karakter div', () => {
+    cy.get('.karakter').trigger('keydown', { key: 'd', force: true });
+    cy.get('.karakter').should(($div) => {
+      expect($div).to.have.class('mozog');
+      const jelenlegiX = parseInt($div.css('left'), 10);
+      expect(jelenlegiX).to.be.at.least(500);
+    });
+    cy.get('.karakter').trigger('keyup', { key: 'd', force: true });
+    cy.wait(1000);
+    cy.get('.karakter').should('not.have.class', 'mozog');
+    });
 })
 
 describe("Képek megjelenése teszt - Gubek Veronika", () => {
