@@ -1,14 +1,58 @@
 describe("Tesztek - Bernáth Milán", () => {
   beforeEach(() => {
-    cy.visit("https://bumbleveee.github.io/Jatek_M_V/");
+    cy.visit('https://bumbleveee.github.io/Jatek_M_V/')
+  });
+  
+  it('passes', () => {});
+
+  it('WASD mozgás teszt', () => {
+    cy.get('.karakter').trigger('keydown', { key: 's', force: true });
+    cy.get('.karakter').should(($div) => {
+      const jelenlegiY = parseInt($div.css('top'), 10);
+      expect(jelenlegiY).to.be.at.least(250);
+    });
+    cy.get('.karakter').trigger('keyup', { key: 's', force: true });
+    
+    cy.get('.karakter').trigger('keydown', { key: 'w', force: true });
+    cy.get('.karakter').should(($div) => {
+      const jelenlegiY = parseInt($div.css('top'), 10);
+      expect(jelenlegiY).to.be.at.most(150);
+    });
+    cy.get('.karakter').trigger('keyup', { key: 'w', force: true });
+
+    cy.get('.karakter').trigger('keydown', { key: 'd', force: true });
+    cy.get('.karakter').should(($div) => {
+      const jelenlegiX = parseInt($div.css('left'), 10);
+      expect(jelenlegiX).to.be.at.least(200);
+    });
+    cy.get('.karakter').trigger('keyup', { key: 'd', force: true });
+
+    cy.get('.karakter').trigger('keydown', { key: 'a', force: true });
+    cy.get('.karakter').should(($div) => {
+      const jelenlegiX = parseInt($div.css('left'), 10);
+      expect(jelenlegiX).to.be.at.most(100);
+    });
+    cy.get('.karakter').trigger('keyup', { key: 'a', force: true });
   });
 
-  it("passes", () => {});
-  it("Kulcs felvéve alert tesztelése", () => {
-    cy.get(".karakter").trigger("keydown", { key: "ArrowRight", force: true });
-    cy.get(".karakter").should(($div) => {
-      const jelenlegiX = parseInt($div.css("left"), 10);
-      expect(jelenlegiX).to.be.at.least(650);
+  it('A mozog class-t megkapja-e a karakter div', () => {
+    cy.get('.karakter').trigger('keydown', { key: 'd', force: true });
+    cy.get('.karakter').should(($div) => {
+      expect($div).to.have.class('mozog');
+      const jelenlegiX = parseInt($div.css('left'), 10);
+      expect(jelenlegiX).to.be.at.least(500);
+    });
+    cy.get('.karakter').trigger('keyup', { key: 'd', force: true });
+    cy.wait(1000);
+    cy.get('.karakter').should('not.have.class', 'mozog');
+  });
+
+  it('Kulcs felvéve alert tesztelése', () => {
+
+    cy.get('.karakter').trigger('keydown', { key: 'ArrowRight', force: true });
+    cy.get('.karakter').should(($div) => {
+      const jelenlegiX = parseInt($div.css('left'), 10); 
+      expect(jelenlegiX).to.be.at.least(650); 
     });
 
     cy.get(".karakter").trigger("keyup", { key: "ArrowRight", force: true });
@@ -63,48 +107,6 @@ describe("Tesztek - Bernáth Milán", () => {
         expect(text).to.equal("Ajtó kinyitva! Kijutottál a szobából!");
       }
     });
-  });
-
-  it("WASD mozgás teszt", () => {
-    cy.get(".karakter").trigger("keydown", { key: "s", force: true });
-    cy.get(".karakter").should(($div) => {
-      const jelenlegiY = parseInt($div.css("top"), 10);
-      expect(jelenlegiY).to.be.at.least(250);
-    });
-    cy.get(".karakter").trigger("keyup", { key: "s", force: true });
-
-    cy.get(".karakter").trigger("keydown", { key: "w", force: true });
-    cy.get(".karakter").should(($div) => {
-      const jelenlegiY = parseInt($div.css("top"), 10);
-      expect(jelenlegiY).to.be.at.most(150);
-    });
-    cy.get(".karakter").trigger("keyup", { key: "w", force: true });
-
-    cy.get(".karakter").trigger("keydown", { key: "d", force: true });
-    cy.get(".karakter").should(($div) => {
-      const jelenlegiX = parseInt($div.css("left"), 10);
-      expect(jelenlegiX).to.be.at.least(200);
-    });
-    cy.get(".karakter").trigger("keyup", { key: "d", force: true });
-
-    cy.get(".karakter").trigger("keydown", { key: "a", force: true });
-    cy.get(".karakter").should(($div) => {
-      const jelenlegiX = parseInt($div.css("left"), 10);
-      expect(jelenlegiX).to.be.at.most(100);
-    });
-    cy.get(".karakter").trigger("keyup", { key: "a", force: true });
-  });
-
-  it("A mozog class-t megkapja-e a karakter div", () => {
-    cy.get(".karakter").trigger("keydown", { key: "d", force: true });
-    cy.get(".karakter").should(($div) => {
-      expect($div).to.have.class("mozog");
-      const jelenlegiX = parseInt($div.css("left"), 10);
-      expect(jelenlegiX).to.be.at.least(500);
-    });
-    cy.get(".karakter").trigger("keyup", { key: "d", force: true });
-    cy.wait(1000);
-    cy.get(".karakter").should("not.have.class", "mozog");
   });
 });
 

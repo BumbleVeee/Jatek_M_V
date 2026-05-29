@@ -3,7 +3,6 @@
     "cypress": "^15.16.0",
     "jsdoc": "^4.0.5"
   },
-  
   "scripts": {
     "cy:open": "cypress open"
   }
