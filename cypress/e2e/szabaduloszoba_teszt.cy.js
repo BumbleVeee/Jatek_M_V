@@ -52,7 +52,7 @@ describe("Tesztek - Bernáth Milán", () => {
     cy.get('.karakter').trigger('keydown', { key: 'ArrowRight', force: true });
     cy.get('.karakter').should(($div) => {
       const jelenlegiX = parseInt($div.css('left'), 10); 
-      expect(jelenlegiX).to.be.at.least(650); 
+      expect(jelenlegiX).to.be.at.least(650);
     });
 
     cy.get(".karakter").trigger("keyup", { key: "ArrowRight", force: true });
@@ -131,9 +131,9 @@ describe("Tesztek - Gubek Veronika", () => {
     // Ellenőrizzük, hogy a karakter feljebb ment-e
     cy.get(".karakter").should(($div) => {
       // Kiolvassuk az aktuális Y pozíciót
-      const jelenlegiY = parseInt($div.css("top"), 10);
+      const jelenlegY = parseInt($div.css("top"), 10);
       // A karakter maximum 150px magasan legyen
-      expect(jelenlegiY).to.be.at.most(100);
+      expect(jelenlegY).to.be.at.most(100);
     });
     // FEL nyíl felengedése
     cy.get(".karakter").trigger("keyup", { key: "ArrowUp", force: true });
@@ -143,9 +143,9 @@ describe("Tesztek - Gubek Veronika", () => {
     // Ellenőrizzük, hogy a karakter lejjebb ment-e
     cy.get(".karakter").should(($div) => {
       // Kiolvassuk a jelenlegi Y pozíciót
-      const jelenlegiY = parseInt($div.css("top"), 10);
+      const jelenlegY = parseInt($div.css("top"), 10);
       // A karakter legalább 250px mélyen legyen
-      expect(jelenlegiY).to.be.at.least(300);
+      expect(jelenlegY).to.be.at.least(300);
     });
     // LE nyíl felengedése
     cy.get(".karakter").trigger("keyup", { key: "ArrowDown", force: true });
@@ -155,9 +155,9 @@ describe("Tesztek - Gubek Veronika", () => {
     // Ellenőrizzük, hogy a karakter jobbra ment-e
     cy.get(".karakter").should(($div) => {
       // Kiolvassuk az aktuális X pozíciót
-      const jelenlegiX = parseInt($div.css("left"), 10);
+      const jelenlegX = parseInt($div.css("left"), 10);
       // A karakter legalább 200px-re legyen balról
-      expect(jelenlegiX).to.be.at.least(250);
+      expect(jelenlegX).to.be.at.least(250);
     });
     // JOBB nyíl felengedése
     cy.get(".karakter").trigger("keyup", { key: "ArrowRight", force: true });
@@ -167,9 +167,9 @@ describe("Tesztek - Gubek Veronika", () => {
     // Ellenőrizzük, hogy a karakter balra ment-e
     cy.get(".karakter").should(($div) => {
       // Kiolvassuk az aktuális X pozíciót
-      const jelenlegiX = parseInt($div.css("left"), 10);
+      const jelenlegX = parseInt($div.css("left"), 10);
       // A karakter maximum 100px-re legyen balról
-      expect(jelenlegiX).to.be.at.most(50);
+      expect(jelenlegX).to.be.at.most(50);
     });
     // BAL nyíl felengedése
     cy.get(".karakter").trigger("keyup", { key: "ArrowLeft", force: true });
@@ -181,9 +181,9 @@ describe("Tesztek - Gubek Veronika", () => {
     // Ellenőrizzük, hogy a karakter feljebb ment-e
     cy.get(".karakter").should(($div) => {
       // Kiolvassuk az aktuális Y pozíciót
-      const jelenlegiY = parseInt($div.css("top"), 10);
+      const jelenlegY = parseInt($div.css("top"), 10);
       // A karakter maximum 150px magasan legyen
-      expect(jelenlegiY).to.be.at.most(100);
+      expect(jelenlegY).to.be.at.most(100);
     });
     // FEL nyíl felengedése
     cy.get(".karakter").trigger("keyup", { key: "W", force: true });
@@ -193,9 +193,9 @@ describe("Tesztek - Gubek Veronika", () => {
     // Ellenőrizzük, hogy a karakter lejjebb ment-e
     cy.get(".karakter").should(($div) => {
       // Kiolvassuk a jelenlegi Y pozíciót
-      const jelenlegiY = parseInt($div.css("top"), 10);
+      const jelenlegY = parseInt($div.css("top"), 10);
       // A karakter legalább 250px mélyen legyen
-      expect(jelenlegiY).to.be.at.least(300);
+      expect(jelenlegY).to.be.at.least(300);
     });
     // LE nyíl felengedése
     cy.get(".karakter").trigger("keyup", { key: "S", force: true });
@@ -205,9 +205,9 @@ describe("Tesztek - Gubek Veronika", () => {
     // Ellenőrizzük, hogy a karakter jobbra ment-e
     cy.get(".karakter").should(($div) => {
       // Kiolvassuk az aktuális X pozíciót
-      const jelenlegiX = parseInt($div.css("left"), 10);
+      const jelenlegX = parseInt($div.css("left"), 10);
       // A karakter legalább 200px-re legyen balról
-      expect(jelenlegiX).to.be.at.least(250);
+      expect(jelenlegX).to.be.at.least(250);
     });
     // JOBB nyíl felengedése
     cy.get(".karakter").trigger("keyup", { key: "D", force: true });
@@ -217,9 +217,9 @@ describe("Tesztek - Gubek Veronika", () => {
     // Ellenőrizzük, hogy a karakter balra ment-e
     cy.get(".karakter").should(($div) => {
       // Kiolvassuk az aktuális X pozíciót
-      const jelenlegiX = parseInt($div.css("left"), 10);
+      const jelenlegX = parseInt($div.css("left"), 10);
       // A karakter maximum 100px-re legyen balról
-      expect(jelenlegiX).to.be.at.most(50);
+      expect(jelenlegX).to.be.at.most(50);
     });
     // BAL nyíl felengedése
     cy.get(".karakter").trigger("keyup", { key: "A", force: true });
@@ -231,8 +231,8 @@ describe("Tesztek - Gubek Veronika", () => {
 
     // Ellenőrizzük, hogy eljutott jobbra
     cy.get(".karakter").should(($div) => {
-      const jelenlegiX = parseInt($div.css("left"), 10);
-      expect(jelenlegiX).to.be.at.least(650);
+      const jelenlegX = parseInt($div.css("left"), 10);
+      expect(jelenlegX).to.be.at.least(650);
     });
 
     // JobbGomb felengedése
@@ -246,8 +246,8 @@ describe("Tesztek - Gubek Veronika", () => {
 
     // Ellenőrizzük, hogy lement
     cy.get(".karakter").should(($div) => {
-      const jelenlegiY = parseInt($div.css("top"), 10);
-      expect(jelenlegiY).to.be.at.least(380);
+      const jelenlegY = parseInt($div.css("top"), 10);
+      expect(jelenlegY).to.be.at.least(380);
     });
 
     // LeGomb felengedése
@@ -261,8 +261,8 @@ describe("Tesztek - Gubek Veronika", () => {
 
     // Ellenőrizzük, hogy feljebb ment
     cy.get(".karakter").should(($div) => {
-      const jelenlegiY = parseInt($div.css("top"), 10);
-      expect(jelenlegiY).to.be.at.most(280);
+      const jelenlegY = parseInt($div.css("top"), 10);
+      expect(jelenlegY).to.be.at.most(280);
     });
 
     // FelGomb felengedése
