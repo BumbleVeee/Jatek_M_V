@@ -50,7 +50,11 @@ describe("Tesztek - Bernáth Milán", () => {
   it('Kulcs felvéve alert tesztelése', () => {
 
     cy.get('.karakter').trigger('keydown', { key: 'ArrowRight', force: true });
+
+    cy.get('.karakter').trigger('keydown', { key: 'ArrowRight', force: true });
     cy.get('.karakter').should(($div) => {
+      const jelenlegiX = parseInt($div.css('left'), 10); 
+      expect(jelenlegiX).to.be.at.least(650); 
       const jelenlegiX = parseInt($div.css('left'), 10); 
       expect(jelenlegiX).to.be.at.least(650); 
     });
