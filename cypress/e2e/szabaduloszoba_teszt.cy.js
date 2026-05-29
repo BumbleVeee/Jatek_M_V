@@ -53,9 +53,8 @@ describe("Tesztek - Bernáth Milán", () => {
       const jelenlegiX = parseInt($div.css('left'), 10); 
       expect(jelenlegiX).to.be.at.least(650);
     });
-
     cy.get(".karakter").trigger("keyup", { key: "ArrowRight", force: true });
-    cy.wait(1000);
+    
     cy.get(".karakter").trigger("keydown", { key: "ArrowDown", force: true });
     cy.get(".karakter").should(($div) => {
       const jelenlegiY = parseInt($div.css("top"), 10);
