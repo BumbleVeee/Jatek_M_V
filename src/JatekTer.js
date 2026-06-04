@@ -16,6 +16,9 @@ export default class Jatekter {
   // Megkeressük a fő játéktér konténert a HTML-ben
     this.szuloElem = document.querySelector("#jatekter");
 
+    // Hátizsák zsebei (6 db)
+    this.hatizsakElem = document.querySelectorAll("#hatizsak ul li"); 
+
     // Példányosítjuk a játékelemeket fix kezdőpozíciókkal és képekkel
     this.#karakter = new Karakter("placeholder", 100, 150, KEPLISTA[0].kep);
     this.#kulcs = new Kulcs(650, 450, KEPLISTA[1].kep);
@@ -41,74 +44,59 @@ export default class Jatekter {
    * Felregisztrálja a billentyűzet és ablak eseményeket.
    */
   esemenyek() {
-    // Billentyű lenyomás figyelése
+    let mozgasIdozito = null; // Időzítő a folyamatos mozgáshoz
+
     window.addEventListener("keydown", (e) => {
+      const LEPES_KOZ = 40; // Egy lépéssel ennyi pixelt halad a karakter
+      
+      // Elmentjük a jelenlegi pozíciót, hogy ellenőrizhessük a határokat
+      let ujX = this.#karakter.pozicio.x;
+      let ujY = this.#karakter.pozicio.y;
 
-      // Balra mozgás (Nyíl, A, a)
+      // Ha egy korábbi lépés után még ketyeg az animáció leállítása, azt töröljük
+      if (mozgasIdozito) {
+        clearTimeout(mozgasIdozito);
+        mozgasIdozito = null;
+      }
+
+      // Animáció osztály hozzáadása
+      this.karakterElem.classList.add("mozog");
+
+      // Pozíció kiszámítása gombnyomásra (Pályahatárok ellenőrzésével)
       if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
-        this.input.left = true;
-        this.karakterElem.classList.add("mozog");
+        if (ujX - LEPES_KOZ >= 0) ujX -= LEPES_KOZ;
       }
-
-      // Jobbra mozgás (Nyíl, D, d)
       if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") {
-        this.input.right = true;
-        this.karakterElem.classList.add("mozog");
+        if (ujX + LEPES_KOZ <= 800 - 70) ujX += LEPES_KOZ; // palyaSzelesseg - karakterSzelesseg
       }
-
-      // Felfelé mozgás (Nyíl, W, w)
       if (e.key === "ArrowUp" || e.key === "w" || e.key === "W") {
-        this.input.up = true;
-        this.karakterElem.classList.add("mozog");
+        if (ujY - LEPES_KOZ >= 50) ujY -= LEPES_KOZ;
+      }
+      if (e.key === "ArrowDown" || e.key === "s" || e.key === "S") {
+        if (ujY + LEPES_KOZ <= 600 - 100) ujY += LEPES_KOZ; // palyaMagassag - karakterMagassag
       }
 
-      // Lefelé mozgás (Nyíl, S, s)
-      if (e.key === "ArrowDown" || e.key === "s" || e.key === "S") {
-        this.input.down = true;
-        this.karakterElem.classList.add("mozog");
+      // Ténylegesen átírjuk a karakter koordinátáit
+      this.#karakter.pozicio.x = ujX;
+      this.#karakter.pozicio.y = ujY;
+    });
+
+    window.addEventListener("keyup", () => {
+      // Amikor FELENGEDI a gombot, nem töröljük azonnal!
+      // Megvárunk 150 ezredmásodpercet (0.15s), amíg a CSS transition befejeződik
+      if (mozgasIdozito === null) {
+        mozgasIdozito = setTimeout(() => {
+          this.karakterElem.classList.remove("mozog");
+          mozgasIdozito = null; // Alaphelyzetbe állítjuk az időzítőt
+        }, 500); // Ez a szám egyezzen meg a CSS transition idejével!
       }
     });
 
-    // Billentyű felengedés figyelése (mozgás megállítása)
-    window.addEventListener("keyup", (e) => {
-
-      if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
-        this.input.left = false;
-        this.karakterElem.classList.remove("mozog"); // Animáció leállítása
-      }
-
-      if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") {
-        this.input.right = false;
-        this.karakterElem.classList.remove("mozog");
-      }
-
-      if (e.key === "ArrowUp" || e.key === "w" || e.key === "W") {
-        this.input.up = false;
-        this.karakterElem.classList.remove("mozog");
-      }
-
-      if (e.key === "ArrowDown" || e.key === "s" || e.key === "S") {
-        this.input.down = false;
-        this.karakterElem.classList.remove("mozog");
-      }
-    });
-    
     // Ha a felhasználó átvált egy másik ablakra, nullázzuk az inputokat (ne ragadjon be a mozgás)
     window.addEventListener("blur", () => {
-      this.inputReset();
+      this.karakterElem.classList.remove("mozog");
     });
   }
-
-  /**
-   * Alaphelyzetbe állítja az összes mozgási inputot.
-   */
-  inputReset() {
-      this.input.left = false;
-      this.input.right = false;
-      this.input.up = false;
-      this.input.down = false;
-      this.karakterElem.classList.remove("mozog");
-    }
   
   /**
    * Kirajzolja az összes játékelemet a szülő konténerbe.
@@ -122,10 +110,33 @@ export default class Jatekter {
   }
 
   /**
+   * Frissíti a hátizsák megjelenítését a karakter aktuális tárgyai alapján. 
+   */
+  hatizsakMegjelenit() {
+    if (this.#karakter.hatizsak.length === 0) {
+      this.hatizsakElem.forEach((zseb) => {
+        zseb.innerHTML = ""; // Üres zsebek megjelenítése
+      });
+      return; // Nincs mit megjeleníteni, kilépünk a függvényből
+    }
+    let sikeresElhelyezes = false;
+    let a_valtozod_neve = this.#karakter.hatizsak[this.#karakter.hatizsak.length - 1].kep;
+    console.log("A felvett tárgy képe:", a_valtozod_neve);
+    // Tárgyak megjelenítése a hátizsákban
+    this.hatizsakElem.forEach((zseb) => {
+      if (sikeresElhelyezes === false && zseb.innerHTML === "") {
+        let kepElem =document.createElement("img");
+        kepElem.src = a_valtozod_neve;
+        zseb.appendChild(kepElem);
+        sikeresElhelyezes = true;
+      }
+    });
+  }
+
+  /**
    * A játék fő frissítési ciklusa (minden képkockánál lefut).
    */
   update() {
-    this.mozgas(); // Pozíciók számítása a gombok alapján
     this.kulcsFelvetel(); // Tárgyfelvétel ellenőrzése
     this.ajtoNyitas(); // Ajtónyitás feltételeinek ellenőrzése
 
@@ -194,6 +205,7 @@ export default class Jatekter {
     if (this.#kulcs.felveheto && kulcsKozVan) {
       this.#karakter.felvesz(this.#kulcs); // Hátizsákba rakás
       this.#kulcs.felvesz(); // Földről eltávolítás
+      this.hatizsakMegjelenit(); // Hátizsák megjelenítésének frissítése
 
       console.log("Kulcs felvéve!");
       window.alert("Kulcs felvéve!");
@@ -216,7 +228,8 @@ export default class Jatekter {
     if (ajtoKozVan && vanKulcs) {
       this.#ajto.kinyit(); // Ajtó kinyitása
       this.#karakter.lerak(this.#kulcs); // Kulcs elhasználása (kivétel a táskából)
-
+      this.hatizsakMegjelenit(); // Hátizsák megjelenítésének frissítése
+      
       console.log("Ajtó kinyitva!");
       window.alert("Ajtó kinyitva! Kijutottál a szobából!");
     }
